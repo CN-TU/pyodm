@@ -11,6 +11,12 @@ pysdo can be installed using pip by running
 
 ### Create yout model
 ```python
+import pysdo
+import pandas
+
+X_train = pandas.read_csv('my_dataset_training.csv')
+X_test = pandas.read_csv('my_dataset_testing.csv')
+
 model = DMC()
 ```
 

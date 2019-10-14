@@ -20,7 +20,7 @@ from tqdm import tqdm
 from sklearn.neighbors import KDTree
 from scipy.spatial import cKDTree
 
-%matplotlib inline
+#%matplotlib inline
 import matplotlib.pyplot as plt
 
 class DMC(object):
