@@ -83,12 +83,11 @@ class DMC(object):
 
         Parameters
         ---------------
-        X: ndarray, shape (n_samples, n_features)
+        X: pandas DataFrame, shape (n_samples, n_features)
             The input data.
         """
-        
-        np.random.seed(self.random_state)
-        X = np.random.shuffle(X.values) # always shuffle
+
+        X = X.sample(frac=1, random_state=self.random_state).reset_index(drop=True).values        
         [self.m, self.n] = X.shape
         
         self.centroides = np.empty((1, self.n))
@@ -169,11 +168,11 @@ class DMC(object):
             
         Returns
         ---------------
-        y: ndarray, shape (n_samples)
+        y: pandas DataFrame, shape (n_samples)
             Binary predicted labels for input data.
         """
         
-        X = X.values    
+        #X = X.values    
         outlierness = self.outlierness(X, mode=mode)
         threshold = np.quantile(outlierness, 1-self.contamination)
         return outlierness > threshold
@@ -184,7 +183,7 @@ class DMC(object):
         
         Parameters
         ---------------
-        X: ndarray, shape (n_samples, n_features)
+        X: pandas DataFrame, shape (n_samples, n_features)
             The input data.
         
         mode: str, [median (default), 'mean', 'max', 'min', 'sum']
@@ -232,7 +231,7 @@ class DMC(object):
             The estimnated default radius.
         """
         
-        X = X.values
+        #X = X.values
         np.random.seed(self.random_state)
         data = X[np.random.choice(self.m, self.n_points, replace=False), :]
         tot = 0.
