@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
 	name='pydmc',
-	version='1.0',
+	version='1.1',
 	description='DMC Data Modeling and Compression',
 	author='Fares Meghdouri',
 	author_email='fares.meghdouri@tuwien.ac.at',

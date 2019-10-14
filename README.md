@@ -20,7 +20,7 @@ X_test = pandas.read_csv('my_dataset_testing.csv')
 model = pydmc.DMC()
 ```
 
-### Supervised classification
+### Binary classification
 ```python
 centroides = model.fit(X=X_train)
 predictions = model.predict(X=X_test)
@@ -28,7 +28,7 @@ predictions = model.predict(X=X_test)
 The same data can be used as trainign and testing data.In this case, the algorithm works as a modeling algorithm and returns a set of centroides with are a compressed version of the original data (can be used for SDO for instance).
 
 
-### Unsupervised classification
+### Outlierness scores
 ```python
 centroides = model.fit(X=X_train)
 outlierness_scores = model.outlierness(X=X_test, mode='mean')
