@@ -17,7 +17,7 @@ import numpy as np
 from scipy.spatial import cKDTree
 
 class OBDM(object):
-    """Data Modeling and Compression"""
+    """Observers Based Data Modeling"""
     
     def __init__(self, R=None, O=5, factor=0.1, contamination=0.1, n_points=100, random_state=None, chunksize=None, shuffle=False):
         """

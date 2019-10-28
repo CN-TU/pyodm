@@ -19,8 +19,8 @@ X_train = np.load('my_dataset_training.npy')
 X_test = np.load('my_dataset_testing.npy')
 
 #or
-#X_train = pandas.read_csv('my_dataset_training.npy').values
-#X_test = pandas.read_csv('my_dataset_testing.npy').values
+#X_train = pandas.read_csv('my_dataset_training.csv').values
+#X_test = pandas.read_csv('my_dataset_testing.csv').values
 
 model = pyobdm.OBDM(shuffle=True)
 ```
