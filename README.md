@@ -1,4 +1,4 @@
-# pyOBDM
+# pyODM
 Observers-based Data Modeling from the paper "Modeling Data with Observers"
 
 ## Installation
@@ -57,10 +57,16 @@ model.get_params()
 This will return a dictionnary of parameters used to build the model.\
 
 ## Coresets Examples
-
+Example1: Three datasets in which data-points are represented in gray and the ODM model in red each with different configuration.
 ![Three datasets in which data-points are represented in gray and the ODM model in red each with different configuration.](/experiements/arti.png)
+
+Example2: Convergence path of an observer.
 ![Convergence path of an observer.](/experiements/track0.png)
+
+Example3: Two clusters datasets with two observers.
 ![Two clusters datasets with two observers.](/experiements/track1.png)
+
+Example4: Five clusters datasets with six observers.
 ![Five clusters datasets with six observers.](/experiements/track2.png)
 
 ## Contact
