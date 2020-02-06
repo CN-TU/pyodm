@@ -6,6 +6,7 @@ Observers-based Data Modeling from the paper "Modeling Data with Observers"
 
 pyodm can be installed using pip by running
 ```pip install git+https://github.com/CN-TU/pyodm```
+Note that in order for ODM to work with an M-Tree core, the implementation (package) in [M-Trees]https://github.com/CN-TU/mtree) need to be installed.
 
 ## Usage
 Please note that many parameters can be adjusted in order to build a model that perfectly models the data. To know more about ODM parameters, read the full paper or refere to the documentation provided with the code.
