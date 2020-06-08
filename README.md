@@ -83,9 +83,9 @@ model.get_params()
 
 This will return a dictionnary of parameters used to build the model.\
 
-## Coresets Examples
-Example1: Three datasets in which data-points are represented in gray and the ODM model in red each with different configuration.
-![Three datasets in which data-points are represented in gray and the ODM model in red each with different configuration.](/experiements/arti.png)
+## Visual Examples
+Example1: Three datasets in which datapoints are represented in gray and the ODM model in red each with a different configuration.
+![Three datasets in which data-points are represented in gray and the ODM model in red each with a different configuration.](/experiements/arti.png)
 
 Example2: Convergence path of an observer.
 ![Convergence path of an observer.](/experiements/track0.png)
