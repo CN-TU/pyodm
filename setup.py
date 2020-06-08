@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
 	name='pyodm',
-	version='2',
+	version='3',
 	description='ODM Observers-based Data Modeling',
 	author='Fares Meghdouri',
 	author_email='fares.meghdouri@tuwien.ac.at',
