@@ -1,5 +1,5 @@
 # pyODM
-Observers-based Data Modeling from the paper "Modeling Data with Observers"
+Observers-based Data Modeling - paper: "Modeling Data with Observers"
 
 ## Installation
 (currently the repository is private).
@@ -10,49 +10,74 @@ pyodm can be installed using pip by running
 Note that in order for ODM to work with an M-Tree core, the implementation (package) in [M-Trees](https://github.com/CN-TU/mtree) needs to be installed.
 
 ## Usage
-Please note that many parameters can be adjusted in order to build a model that perfectly models the data. To know more about ODM parameters, read the full paper or refere to the documentation provided with the code.
+Please note that many parameters can be adjusted in order to build a representative model refer to the paper for more information.
 
-### Create your model (coreset)
+### Create a model
 ```python
 import pyodm
-import numpy
-#import pandas
 
-X_train = np.load('my_dataset_training.npy')
-X_test = np.load('my_dataset_testing.npy')
-
-#or
-#X_train = pandas.read_csv('my_dataset_training.csv').values
-#X_test = pandas.read_csv('my_dataset_testing.csv').values
-
+# create a new model with default parameters
 model = pyodm.ODM(random_state=1)
 ```
 
-### Binary classification
+### Construct a coreset
 ```python
-model.fit(X_train) # fit the data and generate a coreset
-predictions = model.predict(X_test) # predict the labels of the test data absed on the outlierness score
-```
-The same data can be used for trainign and testing. In this case, the algorithm works as a modeling algorithm and returns a set of observers wich are a compressed version (coreset) of the original data (can be used as a plug-in for SDO for instance, parse `model.observers` after fitting).
+import numpy
+#import pandas
 
+# read the data
+X = np.load('my_dataset.npy')
+
+#or
+#X = pandas.read_csv('my_dataset.csv').values
+
+# model the data
+model.fit(X)
+
+# access the array of observers
+print(model.observers)
+
+# access the array of radius
+print(model.radius)
+
+# access the array of populations
+print(model.population)
+
+```
 
 ### Outlierness scores
+In  order to get the outlierness score of a set of points (based on an ODM model), run the foolowing after fitting a model
 ```python
-model.fit(X_train)
-outlierness_scores = model.outlierness(X_test, mode='mean')
+# read the data
+X_test = np.load('my_test_dataset.npy')
+
+# get the outlierness scores
+outlierness_scores = model.outlierness(X_test)
+```
+
+### Anomaly detection
+One can convert the outlierness score into a binary label (outlier/inlier) using the following
+```python
+# read the data
+X_test = np.load('my_test_dataset.npy')
+
+# convert the outlierness scores into binary labels using a contamination threshold
+predictions = model.predict(X_test) 
 ```
 
 ### Points labeling
-
-to get the label of the closest observer to a set of points use:
+to get the label of the closest observer to a set of points use
 ```python
-model.fit(X_train)
-outlierness_scores = model.labels(X_test)
+# read the data
+X_test = np.load('my_test_dataset.npy')
+
+# return the predicted label of each test point (refering to `model.observers`)
+predicted_labels = model.labels(X_test)
 ```
 
 ### Get parameters
 ```python
-model.fit(X_train)
+# return a dictionnary of the current parameters
 model.get_params()
 ```
 
