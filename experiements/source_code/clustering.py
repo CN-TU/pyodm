@@ -99,7 +99,7 @@ for i, dataset in enumerate(datalist):
 			coreset_labels = tmp_model.predict(clustering_model.cluster_centers_)
 			startTime = datetime.now()
 			label_extender = KNeighborsClassifier(n_neighbors=1)
-			pred = label_extender.fit(X, y).predict(X)
+			pred = label_extender.fit(clustering_model.cluster_centers_, coreset_labels).predict(X)
 			lextender = (datetime.now() - startTime).total_seconds()
 			inds = adjusted_rand_score(y, pred)		
 			BASELINE_RES = fill_table(BASELINE_RES, inds, 0, 0, interm,  lextender)
