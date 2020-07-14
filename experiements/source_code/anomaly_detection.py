@@ -1,27 +1,58 @@
-# -*- coding: utf-8 -*-
-
-#******************************************************************************
-#
-# Copyright (C) 2020, Institute of Telecommunications, TU Wien
-#
-# Description : Anomaly Detection experiments
-# Author      : Fares Meghdouri
-#
-#******************************************************************************
-
+from __future__ import print_function, absolute_import, division
+import pandas as pd
 import numpy as np
+from evolutionary_search import maximize
+import collections
+from sklearn.metrics import f1_score
+import json
+from sklearn.metrics import silhouette_score
+import numpy as np
+from scipy.spatial import cKDTree
+from sklearn.mixture import BayesianGaussianMixture
+from sklearn.cluster.k_means_ import _init_centroids
+from sklearn.utils.extmath import row_norms
+import abc
+import numpy as np
+from sklearn.metrics import roc_auc_score
+from sklearn.utils import check_array, check_random_state
+import neupy
+from neupy import algorithms
 from sklearn.cluster import KMeans
+from sklearn.metrics import matthews_corrcoef
+from sklearn.decomposition import PCA
+from sklearn.neighbors import KDTree
+from sklearn.utils import check_array, check_random_state
 from datetime import datetime
+import math
+import numpy as np
+import scipy.spatial.distance as distance
+import multiprocessing as mp
+import multiprocessing
+import ctypes
+from joblib import Parallel, delayed
 from pyodm import ODM
-# ALL CORESETS ALGOITHMS ARE INCLUDED IN utils.py
+from streamod import MTree
+from pyod.models.knn import KNN
 from utils import *
 from sklearn.utils import shuffle
 
-########################################################################
+def fill_table(output, scores, rate, time_interm, time_final):
+	for key, value in scores_mapping.items():
+		if key not in ['ext_time', 'knn_time']:
+			output[i, value, rate] = scores[key]
+		else:
+			if key == 'ext_time':
+				output[i, value, rate] = time_interm
+			if key == 'knn_time':
+				output[i, value, rate] = time_final
+	#print('>>>> ', output[:,:,0])
+	print('>>>> everything is fine')
+	return output
 
+########################################################################
 SEED = 2020
 
-datalist = ['put_your_data_here']
+datalist = ['annthyroid', 'mammography', 'shuttle', 'smtp', 'thyroid']
 r_list = [0.5, 1, 5, 10]
 scores_mapping = {'maxf1':0,
 				  'adj_maxf1':1,
@@ -34,7 +65,6 @@ scores_mapping = {'maxf1':0,
 				  'knn_time':8}
 scores_cols = len(scores_mapping.keys())
 
-# select what you want to extract/compare
 BASELINE_FLAG = True
 ODM_FLAG = True
 RS_FLAG = True
@@ -55,20 +85,6 @@ CNN_RES = np.zeros((len(datalist), scores_cols, len(r_list)))
 
 ########################################################################
 
-def fill_table(output, scores, rate, time_interm, time_final):
-	for key, value in scores_mapping.items():
-		if key not in ['ext_time', 'knn_time']:
-			output[i, value, rate] = scores[key]
-		else:
-			if key == 'ext_time':
-				output[i, value, rate] = time_interm
-			if key == 'knn_time':
-				output[i, value, rate] = time_final
-	#print('>>>> ', output[:,:,0])
-	print('>>>> everything is fine')
-	return output
-
-########################################################################
 
 for i, dataset in enumerate(datalist):
 
@@ -94,7 +110,7 @@ for i, dataset in enumerate(datalist):
 		print('>> {}, variant: {}'.format(dataset, variant))
 		try:
 			startTime = datetime.now()
-			pred = get_out_score(X, X)
+			pred = get_out_score(X, X, y)
 			final = (datetime.now() - startTime).total_seconds()
 			inds = get_indices(y, pred)
 			BASELINE_RES = fill_table(BASELINE_RES, inds, 0, 0, final)
@@ -225,7 +241,6 @@ for i, dataset in enumerate(datalist):
 				print('an issue with {}, rate: {}, variant: {}'.format(dataset, rate, variant))
 				print(e)
 
-		# save results
 		np.save('../results/anomaly_detection/BASELINE_RES', BASELINE_RES)
 		np.save('../results/anomaly_detection/ODM_RES', ODM_RES)
 		np.save('../results/anomaly_detection/RS_RES', RS_RES)
