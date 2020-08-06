@@ -22,8 +22,7 @@
 #******************************************************************************
 
 from joblib import Parallel, delayed
-#from MTree import MTree
-from streamod import MTree
+from dSalmon.trees import MTree
 import multiprocessing
 import numpy as np
 import cProfile
