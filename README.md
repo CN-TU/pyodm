@@ -1,13 +1,14 @@
 # pyODM
-Observers-based Data Modeling - paper: "Modeling Data with Observers"
+Contact: Fares Meghdouri - fares.meghdouri@tuwien.ac.at
+
+Observers-based Data Modeling - paper: "Modeling Data with Observers" (pending)
 
 ## Installation
-(currently the repository is private).
 
 pyodm can be installed using pip by running
 ```pip install git+https://github.com/CN-TU/pyodm```
 
-Note that in order for ODM to work with an M-Tree core, the implementation (package) in [M-Trees](https://github.com/CN-TU/mtree) needs to be installed.
+Note that in order for ODM to work with an M-Tree core, the implementation (package) in [M-Trees](https://github.com/CN-TU/dSalmon) needs to be installed. The repository is private and will be available soon.
 
 ## Usage
 Please note that many parameters can be adjusted in order to build a representative model refer to the paper for more information.
@@ -95,6 +96,3 @@ Example3: Two clusters datasets with two observers.
 
 Example4: Five clusters datasets with six observers.
 ![Five clusters datasets with six observers.](/experiements/track2.png)
-
-## Contact
-fares.meghdouri@tuwien.ac.at
