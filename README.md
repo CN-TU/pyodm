@@ -1,7 +1,20 @@
 # pyODM
 Contact: Fares Meghdouri - fares.meghdouri@tuwien.ac.at
 
-Observers-based Data Modeling - paper: "Modeling Data with Observers" (pending)
+Paper: "Modeling Data with Observers"
+```
+@article{meghdouri2022modeling,
+  title={Modeling data with observers},
+  author={Meghdouri, Fares and Iglesias V{\'a}zquez, F{\'e}lix and Zseby, Tanja},
+  journal={Intelligent Data Analysis},
+  volume={26},
+  number={3},
+  pages={785--803},
+  year={2022},
+  publisher={IOS Press}
+}
+
+```
 
 ## Installation
 
@@ -96,3 +109,5 @@ Example3: Two clusters datasets with two observers.
 
 Example4: Five clusters datasets with six observers.
 ![Five clusters datasets with six observers.](/experiements/track2.png)
+
+
