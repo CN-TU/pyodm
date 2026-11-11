@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyodm"
+version = "3.1.0"
+description = "ODM - Observers-based Data Modeling (coresets, clustering, anomaly detection)"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "GPL-3.0-only" }
+authors = [{ name = "Fares Meghdouri", email = "fares.meghdouri@tuwien.ac.at" }]
+keywords = ["coreset", "clustering", "outlier-detection", "m-tree", "kd-tree"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "numpy>=1.22",
+    "scipy>=1.8",
+    "joblib>=1.1",
+]
+
+[project.optional-dependencies]
+plot = ["matplotlib>=3.5"]
+test = ["pytest>=7"]
+all = ["matplotlib>=3.5", "pytest>=7"]
+
+[project.urls]
+Homepage = "https://github.com/CN-TU/pyodm"
+Paper = "https://doi.org/10.3233/IDA-215741"
+
+[tool.setuptools]
+packages = ["pyodm", "pyodm.trees"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["error::RuntimeWarning"]

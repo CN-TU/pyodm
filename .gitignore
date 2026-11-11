@@ -1,0 +1,24 @@
+# Private virtual environment (created with `python -m venv .venv`)
+.venv/
+venv/
+env/
+
+# Python caches / build artefacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.eggs/
+.pytest_cache/
+
+# Scratch frames written while rendering animations
+animations/frames/
+
+# OS / editor noise
+.DS_Store
+.idea/
+.vscode/
+
+# DeepSeek Harness tooling artifacts
+.dsh-plugins/
